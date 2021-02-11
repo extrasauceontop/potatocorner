@@ -32,21 +32,24 @@ headers = {
 url = "https://www.potatocornerusa.com"
 response = session.get(url, headers=headers).text
 soup = bs(response, "html.parser")
-all_script = soup.find_all("script")
+# all_script = soup.find_all("script")
 
-goods = []
-for script in all_script:
-    try:
-        stripped = script.text.strip()
-        data = json.loads(stripped)
-        goods.append(data)
-    except Exception as ex:
-        logger.info(ex)
+# goods = []
+# for script in all_script:
+#     try:
+#         stripped = script.text.strip()
+#         data = json.loads(stripped)
+#         goods.append(data)
+#     except Exception as ex:
+#         logger.info(stripped)
+#         logger.info(ex)
+        
 
-data = goods[1]
+# data = goods[1]
 
-# script = soup.find("script", attrs={"id": "wix-viewer-model"}).text.strip()
-# data = json.loads(script)
+script = soup.find("script", attrs={"id": "wix-viewer-model"}).text.strip()
+logger.info(script)
+data = json.loads(script)
 
 for key in data["siteFeaturesConfigs"]["router"]["routes"]:
     route = key[1:]
