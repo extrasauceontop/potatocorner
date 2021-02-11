@@ -30,7 +30,7 @@ headers = {
 
 url = "https://www.potatocornerusa.com"
 response = session.get(url, headers=headers).text
-soup = bs(response, "html.parser")
+soup = bs(response, "lxml")
 all_script = soup.find_all("script")
 logger.info(len(all_script))
 script = soup.find("script", attrs={"id": "wix-viewer-model"}).text.strip()
