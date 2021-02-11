@@ -32,7 +32,7 @@ url = "https://www.potatocornerusa.com"
 response = session.get(url, headers=headers).text
 soup = bs(response, "html.parser")
 
-logger.info("soup")
+logger.info(soup)
 
 script = soup.find("script", attrs={"id": "wix-viewer-model"}).text.strip()
 data = json.loads(script)
