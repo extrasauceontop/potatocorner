@@ -1,7 +1,12 @@
 from bs4 import BeautifulSoup as bs
 import pandas as pd
 from sgrequests import SgRequests
+from sglogging import SgLogSetup
 import json
+
+logger = SgLogSetup().get_logger("potato_corner")
+
+logger.info("This printed")
 
 locator_domains = []
 page_urls = []
@@ -26,6 +31,8 @@ headers = {
 url = "https://www.potatocornerusa.com"
 response = session.get(url, headers=headers).text
 soup = bs(response, "html.parser")
+
+logger.info("soup")
 
 script = soup.find("script", attrs={"id": "wix-viewer-model"}).text.strip()
 data = json.loads(script)
