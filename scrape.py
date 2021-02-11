@@ -40,8 +40,8 @@ for script in all_script:
         stripped = script.text.strip()
         data = json.loads(stripped)
         goods.append(data)
-    except Exception:
-        pass
+    except Exception as ex:
+        logger.info(ex)
 
 data = goods[1]
 
