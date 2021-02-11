@@ -1,8 +1,10 @@
+import bs4
 from bs4 import BeautifulSoup as bs
 import pandas as pd
 from sgrequests import SgRequests
 from sglogging import SgLogSetup
 import json
+print(bs4.__version__)
 
 logger = SgLogSetup().get_logger("potato_corner")
 
