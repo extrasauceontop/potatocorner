@@ -31,10 +31,9 @@ headers = {
 url = "https://www.potatocornerusa.com"
 response = session.get(url, headers=headers).text
 soup = bs(response, "html.parser")
-
+logger.info(soup)
 
 script = soup.find("script", attrs={"id": "wix-viewer-model"}).text.strip()
-logger.info(script)
 data = json.loads(script)
 
 for key in data["siteFeaturesConfigs"]["router"]["routes"]:
