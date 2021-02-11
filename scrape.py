@@ -37,7 +37,7 @@ all_script = soup.find_all("script")
 goods = []
 for script in all_script:
     try:
-        stripped = script.text.strip()
+        stripped = script
         logger.info(stripped)
         data = json.loads(stripped)
         goods.append(data)
