@@ -47,7 +47,7 @@ soup = bs(response, "html.parser")
 
 # data = goods[1]
 
-script = soup.find("script", attrs={"id": "wix-viewer-model"}).text.strip()
+script = soup.find("script", attrs={"id": "wix-viewer-model"}).text
 logger.info(script)
 data = json.loads(script)
 
