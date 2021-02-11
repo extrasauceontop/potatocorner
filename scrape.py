@@ -31,11 +31,22 @@ headers = {
 
 url = "https://www.potatocornerusa.com"
 response = session.get(url, headers=headers).text
-soup = bs(response, "lxml")
+soup = bs(response, "html.parser")
 all_script = soup.find_all("script")
-logger.info(len(all_script))
-script = soup.find("script", attrs={"id": "wix-viewer-model"}).text.strip()
-data = json.loads(script)
+
+goods = []
+for script in all_script:
+    try:
+        stripped = script.text.strip()
+        data = json.loads(stripped)
+        goods.append(data)
+    except Exception:
+        pass
+
+data = goods[1]
+
+# script = soup.find("script", attrs={"id": "wix-viewer-model"}).text.strip()
+# data = json.loads(script)
 
 for key in data["siteFeaturesConfigs"]["router"]["routes"]:
     route = key[1:]
